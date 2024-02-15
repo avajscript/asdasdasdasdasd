@@ -1,8 +1,7 @@
 package org.example.event;
 
-public class PublicEvent extends Event {
-    @Override
-    public void calculateAdmissionFee() {
+import org.example.constants.Constants;
 
-    }
+public class PublicEvent extends Event {
+
 }

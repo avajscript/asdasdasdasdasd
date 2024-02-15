@@ -96,7 +96,9 @@ public abstract class Event {
 
 
 	// Every library as it own admission fee
-	public abstract void calculateAdmissionFee();
-    
+	public void calculateAdmissionFee(double duration, double rate) {
+		this.admissionFees = duration * rate;
+	}
+
     
 }
