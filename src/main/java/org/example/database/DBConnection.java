@@ -2,12 +2,13 @@ package org.example.database;
 
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBConnection {
-	
 	private static Connection connection = null;
-	private static DBConnection dbConnection = null;
+	private DBConnection() {}
 	private static String serverUrl = "jdbc:mysql://localhost:3306/bookvault";
 	private static String userString = "***";
 	private static  String passwordString = "***";
@@ -31,12 +32,18 @@ public class DBConnection {
 		}
 	}
 
-	public static DBConnection getInstance() {
-		if (dbConnection == null) {
-			loadProperties();
-			dbConnection = new DBConnection();
+	public static Connection getConnection() {
+		loadProperties();
+
+		try {
+			if (connection == null) {
+				connection = DriverManager.getConnection(serverUrl, userString, passwordString);
+			} else {
+				System.out.println("Cannot create new connection, using existing one");
+			}
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
 		}
-		return dbConnection;
+		return connection;
 	}
-	
 }
