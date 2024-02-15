@@ -1,6 +1,7 @@
 package org.example.database;
 
-import com.algonquin.cst8288.assignment2.event.Event;
+import org.example.event.Event;
+
 
 public class DBOperations {
 
